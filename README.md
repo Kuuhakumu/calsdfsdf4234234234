@@ -321,53 +321,49 @@ $$a_N = \sqrt{||\vec{a}||^2 - a_T^2} = \sqrt{16 - 0} = 4$$
 
 ## Problem 5.2
 
-**Original Problem:**  
-For the position vector $\vec{r}(t) = \langle 4t,\; -t^2,\; 2t^3 \rangle$, determine the tangential and normal components of acceleration.
+**Original Problem (Worked Example from Lesson Notes):**  
+An object has acceleration $\vec{a}(t) = \vec{i} + 2\vec{j} + 6t\,\vec{k}$, initial velocity $\vec{v}(0) = \vec{j} - \vec{k}$, and initial position $\vec{r}(0) = \vec{i} - 2\vec{j} + 3\vec{k}$.  
+Determine the tangential and normal components of acceleration.
+
+**Source:** [Velocity and Acceleration Lesson Notes — Example 2](https://tutorial.math.lamar.edu/Classes/CalcIII/Velocity_Acceleration.aspx)
 
 ### Solution
 
-**Step 1:** Find the velocity vector $\vec{v}(t)$:
-$$\vec{v}(t) = \langle 4,\; -2t,\; 6t^2 \rangle$$
+**Step 1:** First find $\vec{v}(t)$ by integrating $\vec{a}(t)$:
+$$\vec{v}(t) = \int \langle 1, 2, 6t \rangle\,dt = \langle t, 2t, 3t^2 \rangle + \vec{C_1}$$
+Apply $\vec{v}(0) = \langle 0, 1, -1 \rangle$: $\vec{C_1} = \langle 0, 1, -1 \rangle$
+$$\vec{v}(t) = \langle t,\; 2t + 1,\; 3t^2 - 1 \rangle$$
 
 **Step 2:** Find the speed $||\vec{v}(t)||$:
-$$||\vec{v}(t)|| = \sqrt{16 + 4t^2 + 36t^4} = 2\sqrt{9t^4 + t^2 + 4}$$
+$$||\vec{v}(t)|| = \sqrt{t^2 + (2t+1)^2 + (3t^2-1)^2}$$
+$$= \sqrt{t^2 + 4t^2 + 4t + 1 + 9t^4 - 6t^2 + 1}$$
+$$= \sqrt{9t^4 - t^2 + 4t + 2}$$
 
-**Step 3:** Find the acceleration vector $\vec{a}(t)$:
-$$\vec{a}(t) = \langle 0,\; -2,\; 12t \rangle$$
+**Step 3:** Calculate $a_T = \dfrac{\vec{v} \cdot \vec{a}}{||\vec{v}||}$:
 
-**Step 4:** Calculate tangential acceleration using $a_T = \dfrac{\vec{v} \cdot \vec{a}}{||\vec{v}||}$:
+$$\vec{v} \cdot \vec{a} = (t)(1) + (2t+1)(2) + (3t^2-1)(6t)$$
+$$= t + 4t + 2 + 18t^3 - 6t = 18t^3 - t + 2$$
 
-$$\vec{v} \cdot \vec{a} = (4)(0) + (-2t)(-2) + (6t^2)(12t) = 4t + 72t^3$$
+$$a_T = \frac{18t^3 - t + 2}{\sqrt{9t^4 - t^2 + 4t + 2}}$$
 
-$$a_T = \frac{4t + 72t^3}{2\sqrt{9t^4 + t^2 + 4}} = \frac{2t + 36t^3}{\sqrt{9t^4 + t^2 + 4}}$$
+**Step 4:** Compute $\vec{v} \times \vec{a}$ for $a_N$:
+$$\vec{v} \times \vec{a} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ t & 2t+1 & 3t^2-1 \\ 1 & 2 & 6t \end{vmatrix}$$
 
-**Step 5:** Find $||\vec{a}(t)||$:
-$$||\vec{a}(t)|| = \sqrt{0 + 4 + 144t^2} = \sqrt{4 + 144t^2} = 2\sqrt{1 + 36t^2}$$
+$$\vec{i}: (2t+1)(6t) - (3t^2-1)(2) = 12t^2 + 6t - 6t^2 + 2 = 6t^2 + 6t + 2$$
+$$\vec{j}: -[(t)(6t) - (3t^2-1)(1)] = -(6t^2 - 3t^2 + 1) = -(3t^2 + 1)$$
+$$\vec{k}: (t)(2) - (2t+1)(1) = 2t - 2t - 1 = -1$$
 
-**Step 6:** Calculate normal acceleration using $a_N = \sqrt{||\vec{a}||^2 - a_T^2}$:
-$$||\vec{a}||^2 = 4 + 144t^2$$
+$$\vec{v} \times \vec{a} = \langle 6t^2 + 6t + 2,\; -(3t^2+1),\; -1 \rangle$$
 
-$$a_T^2 = \frac{(2t + 36t^3)^2}{9t^4 + t^2 + 4}$$
+**Step 5:** Find $||\vec{v} \times \vec{a}||$:
+$$||\vec{v} \times \vec{a}|| = \sqrt{(6t^2+6t+2)^2 + (3t^2+1)^2 + 1}$$
 
-$$a_N = \sqrt{(4 + 144t^2) - \frac{(2t + 36t^3)^2}{9t^4 + t^2 + 4}}$$
-
-$$= \sqrt{\frac{(4 + 144t^2)(9t^4 + t^2 + 4) - (2t + 36t^3)^2}{9t^4 + t^2 + 4}}$$
-
-Expanding the numerator:
-
-$(4 + 144t^2)(9t^4 + t^2 + 4) = 36t^4 + 4t^2 + 16 + 1296t^6 + 144t^4 + 576t^2$
-$= 1296t^6 + 180t^4 + 580t^2 + 16$
-
-$(2t + 36t^3)^2 = 4t^2 + 144t^4 + 1296t^6$
-
-Numerator $= 1296t^6 + 180t^4 + 580t^2 + 16 - 1296t^6 - 144t^4 - 4t^2$
-$= 36t^4 + 576t^2 + 16$
-
-$$a_N = \frac{\sqrt{36t^4 + 576t^2 + 16}}{\sqrt{9t^4 + t^2 + 4}}$$
+**Step 6:** Calculate $a_N = \dfrac{||\vec{v} \times \vec{a}||}{||\vec{v}||}$:
+$$a_N = \frac{\sqrt{(6t^2+6t+2)^2 + (3t^2+1)^2 + 1}}{\sqrt{9t^4 - t^2 + 4t + 2}}$$
 
 ### Final Answer:
-$$a_T = \frac{2t + 36t^3}{\sqrt{9t^4 + t^2 + 4}}$$
-$$a_N = \frac{\sqrt{36t^4 + 576t^2 + 16}}{\sqrt{9t^4 + t^2 + 4}}$$
+$$a_T = \frac{18t^3 - t + 2}{\sqrt{9t^4 - t^2 + 4t + 2}}$$
+$$a_N = \frac{\sqrt{(6t^2+6t+2)^2 + (3t^2+1)^2 + 1}}{\sqrt{9t^4 - t^2 + 4t + 2}}$$
 
 ---
 ---
@@ -423,40 +419,42 @@ $$\vec{r}(t) = \left(\frac{t^3}{2} - 5\right)\vec{i} + (-4e^{-t} - 3t + 6)\,\vec
 
 ## Problem 6.2
 
-**Original Problem:**  
-An object's acceleration is given by:
-$$\vec{a}(t) = \langle 6t,\; 12t^2,\; -6t \rangle$$
-with initial velocity $\vec{v}(0) = \langle 2, 0, -4 \rangle$ and initial position $\vec{r}(0) = \langle 0, 3, -2 \rangle$.
+**Original Problem (Worked Example from Lesson Notes):**  
+An object has acceleration $\vec{a}(t) = \vec{i} + 2\vec{j} + 6t\,\vec{k}$, initial velocity $\vec{v}(0) = \vec{j} - \vec{k}$, and initial position $\vec{r}(0) = \vec{i} - 2\vec{j} + 3\vec{k}$.
 
 Determine the object's velocity and position functions.
+
+**Source:** [Velocity and Acceleration Lesson Notes — Example 1](https://tutorial.math.lamar.edu/Classes/CalcIII/Velocity_Acceleration.aspx)
 
 ### Solution
 
 #### Part A: Find $\vec{v}(t)$
 
-$$\vec{v}(t) = \int \vec{a}(t)\,dt = \int \langle 6t,\; 12t^2,\; -6t \rangle\,dt$$
-$$= \langle 3t^2,\; 4t^3,\; -3t^2 \rangle + \vec{C_1}$$
+Integrate the acceleration:
+$$\vec{v}(t) = \int \vec{a}(t)\,dt = \int \langle 1,\; 2,\; 6t \rangle\,dt$$
+$$= \langle t,\; 2t,\; 3t^2 \rangle + \vec{C_1}$$
 
-Apply $\vec{v}(0) = \langle 2, 0, -4 \rangle$:
-$$\langle 0, 0, 0 \rangle + \vec{C_1} = \langle 2, 0, -4 \rangle$$
-$$\vec{C_1} = \langle 2, 0, -4 \rangle$$
+Apply $\vec{v}(0) = \langle 0, 1, -1 \rangle$:
+$$\langle 0, 0, 0 \rangle + \vec{C_1} = \langle 0, 1, -1 \rangle$$
+$$\vec{C_1} = \langle 0, 1, -1 \rangle$$
 
-$$\boxed{\vec{v}(t) = \langle 3t^2 + 2,\; 4t^3,\; -3t^2 - 4 \rangle}$$
+$$\boxed{\vec{v}(t) = \langle t,\; 2t + 1,\; 3t^2 - 1 \rangle}$$
 
 #### Part B: Find $\vec{r}(t)$
 
-$$\vec{r}(t) = \int \vec{v}(t)\,dt = \int \langle 3t^2 + 2,\; 4t^3,\; -3t^2 - 4 \rangle\,dt$$
-$$= \langle t^3 + 2t,\; t^4,\; -t^3 - 4t \rangle + \vec{C_2}$$
+Integrate the velocity:
+$$\vec{r}(t) = \int \vec{v}(t)\,dt = \int \langle t,\; 2t + 1,\; 3t^2 - 1 \rangle\,dt$$
+$$= \langle \frac{t^2}{2},\; t^2 + t,\; t^3 - t \rangle + \vec{C_2}$$
 
-Apply $\vec{r}(0) = \langle 0, 3, -2 \rangle$:
-$$\langle 0, 0, 0 \rangle + \vec{C_2} = \langle 0, 3, -2 \rangle$$
-$$\vec{C_2} = \langle 0, 3, -2 \rangle$$
+Apply $\vec{r}(0) = \langle 1, -2, 3 \rangle$:
+$$\langle 0, 0, 0 \rangle + \vec{C_2} = \langle 1, -2, 3 \rangle$$
+$$\vec{C_2} = \langle 1, -2, 3 \rangle$$
 
-$$\boxed{\vec{r}(t) = \langle t^3 + 2t,\; t^4 + 3,\; -t^3 - 4t - 2 \rangle}$$
+$$\boxed{\vec{r}(t) = \langle \frac{t^2}{2} + 1,\; t^2 + t - 2,\; t^3 - t + 3 \rangle}$$
 
 ### Final Answer:
-$$\vec{v}(t) = (3t^2 + 2)\,\vec{i} + 4t^3\,\vec{j} + (-3t^2 - 4)\,\vec{k}$$
-$$\vec{r}(t) = (t^3 + 2t)\,\vec{i} + (t^4 + 3)\,\vec{j} + (-t^3 - 4t - 2)\,\vec{k}$$
+$$\vec{v}(t) = t\,\vec{i} + (2t + 1)\,\vec{j} + (3t^2 - 1)\,\vec{k}$$
+$$\vec{r}(t) = \left(\frac{t^2}{2} + 1\right)\vec{i} + (t^2 + t - 2)\,\vec{j} + (t^3 - t + 3)\,\vec{k}$$
 
 ---
 ---
@@ -474,6 +472,6 @@ $$\vec{r}(t) = (t^3 + 2t)\,\vec{i} + (t^4 + 3)\,\vec{j} + (-t^3 - 4t - 2)\,\vec{
 | 4.1 | 12.4 Curvature and Normal Vector | [Prob 1](https://tutorial.math.lamar.edu/Problems/CalcIII/Curvature.aspx) |
 | 4.2 | 12.4 Curvature and Normal Vector | [Prob 2](https://tutorial.math.lamar.edu/Problems/CalcIII/Curvature.aspx) |
 | 5.1 | 12.5 Tangential and Normal Accel. | [Prob 2](https://tutorial.math.lamar.edu/Problems/CalcIII/Velocity_Acceleration.aspx) |
-| 5.2 | 12.5 Tangential and Normal Accel. | Custom (same function as 4.2) |
+| 5.2 | 12.5 Tangential and Normal Accel. | [Lesson Example 2](https://tutorial.math.lamar.edu/Classes/CalcIII/Velocity_Acceleration.aspx) |
 | 6.1 | 12.6 Velocity and Acceleration | [Prob 1](https://tutorial.math.lamar.edu/Problems/CalcIII/Velocity_Acceleration.aspx) |
-| 6.2 | 12.6 Velocity and Acceleration | Custom problem (same format) |
+| 6.2 | 12.6 Velocity and Acceleration | [Lesson Example 1](https://tutorial.math.lamar.edu/Classes/CalcIII/Velocity_Acceleration.aspx) |
